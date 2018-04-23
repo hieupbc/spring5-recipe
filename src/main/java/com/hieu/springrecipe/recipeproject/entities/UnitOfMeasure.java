@@ -1,4 +1,4 @@
-package com.hieu.springrecipe.recipeproject.Entities;
+package com.hieu.springrecipe.recipeproject.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

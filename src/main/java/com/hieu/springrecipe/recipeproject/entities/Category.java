@@ -1,4 +1,4 @@
-package com.hieu.springrecipe.recipeproject.Entities;
+package com.hieu.springrecipe.recipeproject.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -14,18 +13,15 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Ingredient {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Lob
-    private String decription;
-    private BigDecimal amount;
 
-    @ManyToMany(mappedBy = "ingredients")
+    @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private UnitOfMeasure unitOfMeasure;
+    @Lob
+    private String description;
 }

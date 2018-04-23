@@ -1,4 +1,4 @@
-package com.hieu.springrecipe.recipeproject.Entities;
+package com.hieu.springrecipe.recipeproject.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -30,8 +29,7 @@ public class Recipe {
     @OneToOne
     private Note note;
 
-    @ManyToMany
-    @JoinTable(name = "recipe_ingredient", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    @OneToMany(mappedBy = "recipe",cascade = CascadeType.ALL)
     private Set<Ingredient> ingredients;
     @Enumerated(value = EnumType.STRING)
     private Difficulity difficulity;
