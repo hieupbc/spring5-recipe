@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:if="${recipe !=null}" th:text="${recipe.getDescription()}">Form</title>
+    <div th:replace="header::css"></div>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h1 class="panel-title" th:text="${recipe.getDescription()}">My Recipes!</h1>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-stripped">
+                            <tr>
+                                <td>ID</td>
+                                <td th:text="${recipe.getId()}"></td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><input type="text" th:field="*{description}" style="width: 95%"/></td>
+                            </tr>
+                            <tr>
+                                <td>Serving</td>
+                                <td><input type="number" th:field="*{serving}" style="width: 95%"/></td>
+                            </tr>
+                            <tr>
+                                <td>Prepare Time</td>
+                                <td><input type="number" th:field="*{prepTime}" style="width: 95%"/></td>
+                            </tr>
+                            <tr>
+                                <td>Cook Time</td>
+                                <td><input type="number" th:field="*{cookTime}" style="width: 95%"/></td>
+                            </tr>
+                            <tr>
+                                <td>Difficulty</td>
+                                <td>
+
+                                    <select class="form-control" th:field="*{difficulty}">
+                                        <option th:each="difficultyValue : ${T(com.hieu.springrecipe.recipeproject.entities.Difficulty).values()}"
+                                                th:value="${difficultyValue.name()}"
+                                                th:text="${difficultyValue.name()}"
+                                        >val
+                                        </option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Source</td>
+                                <td><input type="text" th:field="*{source}" style="width: 95%"/></td>
+                            </tr>
+                            <tr>
+                                <td>Link</td>
+                                <td><input type="text" th:field="*{url}" style="width: 95%"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h2 class="panel-title">Categories</h2></div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <th:block th:each="category : ${categories}">
+                                <li class="list-group-item">
+                                    <input type="checkbox" th:value="${category.getDescription()}"
+                                           th:if="${#lists.contains(recipe.categories,category)}" checked th:text="${category.description}"/>
+                                    <input type="checkbox" th:value="${category.getDescription()}"
+                                           th:if="${not #lists.contains(recipe.categories,category)}" th:text="${category.description}"/>
+                                </li>
+
+                            </th:block>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h2 class="panel-title">Direction</h2></div>
+                    <div class="panel-body">
+                        <textarea class="form-control rounded-0" th:text="${recipe.getDirection()}"  cols="90%"
+                                  rows="15"></textarea>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h2 class="panel-title">Note</h2></div>
+                    <div class="panel-body">
+                        <textarea class="form-control rounded-0" name="" th:field="*{note.description}"
+                                  id="" cols="90%" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h2 class="panel-title">Ingredients</h2></div>
+                    <div class="panel-body">
+
+                        <table class="table">
+                            <th:block th:if="${not #lists.isEmpty(recipe.ingredients)}" th:each="ingredient:${recipe.getIngredients()}">
+                                <tr>
+                                    <td th:text="${ingredient.getDecription()}"></td>
+                                    <td th:text="${ingredient.getAmount()}"></td>
+                                    <td th:text="${ingredient.getUnitOfMeasure().getUom()}"></td>
+                                </tr>
+                            </th:block>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

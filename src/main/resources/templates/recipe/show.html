@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${recipe.getDescription()}">Title</title>
+    <div th:replace="~{header:: css}"></div>
+
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h1 class="panel-title" th:text="${recipe.getDescription()}">My Recipes!</h1>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-stripped">
+                        <tr>
+                            <td>ID</td>
+                            <td th:text="${recipe.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Serving</td>
+                            <td th:text="${recipe.getServing()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Prepare Time</td>
+                            <td th:text="${recipe.getPrepTime()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Cook Time</td>
+                            <td th:text="${recipe.getCookTime()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Difficulty</td>
+                            <td th:text="${recipe.getDifficulty().name()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Source</td>
+                            <td th:text="${recipe.getSource()}"></td>
+                        </tr>
+                        <tr>
+                            <td>Link</td>
+                            <td th:text="${recipe.getUrl()}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading"><h2 class="panel-title">Categories</h2></div>
+                <div class="panel-body">
+                    <ul>
+                        <th:block th:each="category:${recipe.getCategories()}">
+                            <li th:text="${category.getDescription()}"></li>
+                        </th:block>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading"><h2 class="panel-title">Direction</h2></div>
+                <div class="panel-body">
+                    <textarea class="form-control rounded-0" th:text="${recipe.getDirection()}" id="" cols="90%" rows="15"></textarea>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading"><h2 class="panel-title">Note</h2></div>
+                <div class="panel-body">
+                    <textarea class="form-control rounded-0" name="" th:text="${recipe.getNote().getDescription()}" id="" cols="90%" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading"><h2 class="panel-title">Ingredients</h2></div>
+                <div class="panel-body">
+                    <table class="table">
+                        <th:block th:each="ingredient:${recipe.getIngredients()}">
+                            <tr>
+                                <td th:text="${ingredient.getDecription()}"></td>
+                                <td th:text="${ingredient.getAmount()}"></td>
+                                <td th:text="${ingredient.getUnitOfMeasure().getUom()}"></td>
+                            </tr>
+                        </th:block>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -17,7 +17,7 @@ public class RecipedtoToRecipe implements Converter<RecipeDTO, Recipe> {
         } else {
             final Recipe recipe = new Recipe();
             recipe.setId(source.getId());
-            recipe.setDifficulity(source.getDifficulity());
+            recipe.setDifficulty(source.getDifficulty());
             recipe.setCookTime(source.getCookTime());
             recipe.setDescription(source.getDescription());
             recipe.setDirection(source.getDirection());

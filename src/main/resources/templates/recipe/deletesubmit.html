@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Submit</title>
+    <div th:replace="header::css"></div>
+</head>
+<body>
+
+<div class="col-md-6 col-md-offset-3" style="border: 0px;text-align: center;padding-top: 30px;">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Do you really want to delete this recipe</div>
+        </div>
+        <div class="panel-body">
+            <table class="table" >
+                <tr>
+                    <td>
+                        <button><a th:href="@{'/recipe/'+${id}+'/deleteconfirm'}">YES</a></button>
+                    </td>
+                    <td>
+                        <button><a th:href="@{'/index'}">NO</a></button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

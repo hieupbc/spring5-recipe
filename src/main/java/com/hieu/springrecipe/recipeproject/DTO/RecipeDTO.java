@@ -1,6 +1,6 @@
 package com.hieu.springrecipe.recipeproject.DTO;
 
-import com.hieu.springrecipe.recipeproject.entities.Difficulity;
+import com.hieu.springrecipe.recipeproject.entities.Difficulty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +24,7 @@ public class RecipeDTO {
     private NoteDTO note;
 
     private Set<IngredientDTO> ingredients;
-    private Difficulity difficulity;
+    private Difficulty difficulty;
 
     private Set<CategoryDTO> categories;
 
